@@ -23,6 +23,11 @@ public class AppControler {
     public Mono<String> mostrarPokemon(@PathVariable String nome, Model model) {
         return pokemonService.buscarPokemon(nome)
                 .doOnNext(pokemon -> model.addAttribute("pokemon", pokemon))
-                .thenReturn("pokemon");
+                .thenReturn("pokemon")
+                .onErrorResume(e -> {
+                    model.addAttribute("message", "Pokémon não encontrado!"); // Define a mensagem de erro
+                    return Mono.just("error"); // Retorna a view de erro
+
+                });
     }
 }
