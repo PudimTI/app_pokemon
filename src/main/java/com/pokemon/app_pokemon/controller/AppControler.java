@@ -1,4 +1,3 @@
-
 package com.pokemon.app_pokemon.controller;
 
 import com.pokemon.app_pokemon.model.Pokemon;
@@ -7,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import reactor.core.publisher.Mono;
 
 @Controller
 public class AppControler {
@@ -19,10 +19,10 @@ public class AppControler {
         this.pokemonService = pokemonService;
     }
 
-    @GetMapping("/pokemon")
-    public String getPokemon(@RequestParam String name, Model model) {
-        Pokemon pokemon = pokemonService.getPokemon(name).block(); // Synchronously retrieve data
-        model.addAttribute("pokemon", pokemon);
-        return "pokemon";
+    @GetMapping("/pokemon/{nome}")
+    public Mono<String> mostrarPokemon(@PathVariable String nome, Model model) {
+        return pokemonService.buscarPokemon(nome)
+                .doOnNext(pokemon -> model.addAttribute("pokemon", pokemon))
+                .thenReturn("pokemon");
     }
 }

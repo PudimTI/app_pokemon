@@ -1,39 +1,14 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Details</title>
 </head>
 <body>
-    <h1>Details for Pokémon: <span th:text="${pokemon.name}"></span></h1>
-    <p><strong>Height:</strong> <span th:text="${pokemon.height}"></span> decimetres</p>
-    <p><strong>Weight:</strong> <span th:text="${pokemon.weight}"></span> hectograms</p>
-    <p><strong>Types:</strong>
-        <ul>
-            <li th:each="type : ${pokemon.types}" th:text="${type}"></li>
-        </ul>
-    </p>
-    <p><strong>Abilities:</strong>
-        <ul>
-            <li th:each="ability : ${pokemon.abilities}" th:text="${ability}"></li>
-        </ul>
-    </p>
-    <p><strong>Base Stats:</strong>
-        <ul>
-            <li th:each="stat : ${pokemon.stats}">
-                <span th:text="${stat.name}"></span>: <span th:text="${stat.baseStat}"></span>
-            </li>
-        </ul>
-    </p>
-    <p><strong>Moves:</strong>
-        <ul>
-            <li th:each="move : ${pokemon.moves}" th:text="${move}"></li>
-        </ul>
-    </p>
-    <p><strong>Sprites:</strong></p>
-    <img th:src="${pokemon.sprites.frontDefault}" alt="Default Sprite">
-    <img th:src="${pokemon.sprites.frontShiny}" alt="Shiny Sprite">
+<h1>Pokemon Details</h1>
+<div>
+    <p>Name: <span th:text="${pokemon.name}"></span></p>
+    <p>Height: <span th:text="${pokemon.height}"></span></p>
+    <p>Weight: <span th:text="${pokemon.weight}"></span></p>
+</div>
 </body>
 </html>
