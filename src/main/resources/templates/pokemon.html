@@ -5,10 +5,14 @@
 </head>
 <body>
 <h1>Pokemon Details</h1>
+
 <div>
+    <p>ID: <span th:text="${pokemon.id}"></span></p>
     <p>Name: <span th:text="${pokemon.name}"></span></p>
-    <p>Height: <span th:text="${pokemon.height}"></span></p>
-    <p>Weight: <span th:text="${pokemon.weight}"></span></p>
+    <p>Height: <span th:text="${pokemon.height} + ' decimetres'"></span></p>
+    <p>Weight: <span th:text="${pokemon.weight} + ' hectograms'"></span></p>
 </div>
+
+
 </body>
 </html>

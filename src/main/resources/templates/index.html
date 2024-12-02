@@ -7,6 +7,29 @@
 </head>
 <body>
 <h1>Welcome to the Home Page!</h1>
-<p>Click here to go to the Pokemon page: <a href="/pokemon">Go to Pokemon</a></p>
+<p>Click here to go to the Pokemon page: <a href="/pokemon/pikachu">Go to Pokemon</a></p>
+<form action="" method="GET" id="pokemon-form">
+    <label for="pokemon-name">Digite o nome do Pokémon:</label>
+    <input type="text" id="pokemon-name" name="pokemon" required>
+    <button type="submit">Buscar</button>
+</form>
+
+<script>
+    // Adicionando evento para interceptar o envio do formulário
+    document.getElementById('pokemon-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+
+        var pokemonName = document.getElementById('pokemon-name').value.trim().toLowerCase();
+
+        if (pokemonName) {
+
+            window.location.href = '/pokemon/' + pokemonName;
+        } else {
+            alert('Por favor, digite um nome de Pokémon.');
+        }
+    });
+</script>
+
 </body>
 </html>
