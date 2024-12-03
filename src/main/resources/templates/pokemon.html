@@ -1,18 +1,113 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Pokemon Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        html, body {
+            height: 100%; /* Garante que o HTML e o Body ocupem 100% da altura da tela */
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #212529;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        /* Estilo do contêiner principal */
+        .container-main {
+            width: 100%;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 10px; /* Bordas arredondadas */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            margin: 20px; /* Margem para espaçamento */
+        }
+
+        .section {
+            margin-bottom: 1.5rem; /* Separação entre as seções */
+        }
+
+        .section p {
+            margin: 0.5rem 0; /* Margem para os parágrafos dentro da seção */
+        }
+
+        .section span {
+            font-weight: bold; /* Destaque para os valores */
+        }
+
+        .section-header {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h1>Pokemon Details</h1>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="http://localhost:8080/">Pokémon Finder</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/pokemon/pikachu">Exemplo: Pikachu</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="container-main">
+                <div class="row justify-content-center">
+                    <img src="https://i.pinimg.com/736x/ca/88/08/ca8808a674b27a9ea967e3d7ac78c1a9.jpg" style="width:220px;height:200px;">
+                </div>
+                <!-- Seção de informações do Pokémon -->
+                <div class="section">
+                    <div class="section-header">Informações do Pokémon</div>
+                    <p>Nome: <span th:text="${#strings.capitalize(pokemon.name)}"></span></p>
+                    <p>ID: <span th:text="${pokemon.id}"></span></p>
+                    <p>Altura:
+                        <span th:text="${T(java.lang.String).format('%.1f', pokemon.height / 10.0)} + ' m'"></span>
+                    </p>
 
-<div>
-    <p>ID: <span th:text="${pokemon.id}"></span></p>
-    <p>Name: <span th:text="${pokemon.name}"></span></p>
-    <p>Height: <span th:text="${pokemon.height} + ' decimetres'"></span></p>
-    <p>Weight: <span th:text="${pokemon.weight} + ' hectograms'"></span></p>
-</div>
+                    <!-- Convertendo peso de hectogramas para quilogramas -->
+                    <p>Peso:
+                        <span th:text="${T(java.lang.String).format('%.1f', pokemon.weight / 10.0)} + ' kg'"></span>
+                    </p>
+                </div>
+                <a class="btn btn-primary" href="http://localhost:8080/" role="button">Voltar</a>
+            </div>
+        </div>
+    </div>
+</main>
 
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p class="mb-0">&copy; 2024 Pokémon Finder. Utilizado PokeAPI.</p>
+    </div>
+</footer>
 
 </body>
 </html>
